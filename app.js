@@ -55,19 +55,19 @@ app.get('/breeds', function(req, res) {
   // send a colection of breeds from the 'database'.
   //filter the breeds from the rest of the info in the 'database'.
   const breeds = item => item.type === 'breed'
-  res.send(filter(breeds, database))
+  res.send(R.filter(breeds, database))
 })
 
 app.get('/breeds/:id', function(req, res) {
   //const breedsFilter = filter((breeds = item => item.type === 'breed'), database)
-  const breedsFilter = filter(R.propEq('type', 'breed'), database)
+  const breedsFilter = R.filter(R.propEq('type', 'breed'), database)
   const idFilter = item => item.id === req.params.id
-  res.send(find(idFilter, breedsFilter))
+  res.send(R.find(idFilter, breedsFilter))
 })
 
 app.get('/cats', function(req, res) {
   const catFilter = item => item.type === 'cat'
-  res.send(filter(catFilter, database))
+  res.send(R.filter(catFilter, database))
 })
 
 app.get('/cats/:id', function(req, res) {
