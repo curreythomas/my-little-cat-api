@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const { filter, find, propEq } = require('ramda')
+const R = require('ramda')
 
 const database = [
   { id: 'tabby', type: 'breed', description: 'A great breed.' },
