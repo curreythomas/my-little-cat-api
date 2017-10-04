@@ -8,33 +8,33 @@ const database = [
   { id: 'maine coon', type: 'breed', description: 'A big soft breed of cat.' },
   { id: 'minx', type: 'breed', description: 'a crazy koo-koo breed of cat.' },
   {
-    id: 'Felix',
+    id: 'felix',
     type: 'cat',
-    name: 'Felix',
+    name: 'felix',
     breed: 'minx',
     owner: 'George Jefferson',
     age: 10
   },
   {
-    id: 'Tootles',
+    id: 'tootles',
     type: 'cat',
-    name: 'Tootles',
+    name: 'tootles',
     breed: 'tabby',
     owner: 'Trip Ottinger',
     age: 15
   },
   {
-    id: 'Abby',
+    id: 'abby',
     type: 'cat',
-    name: 'Abby',
+    name: 'abby',
     breed: 'siamese',
     owner: 'Sam Hunt',
     age: 3
   },
   {
-    id: 'Garfield',
+    id: 'garfield',
     type: 'cat',
-    name: 'Garfield',
+    name: 'garfield',
     breed: 'maine coon',
     owner: 'Nancy Higgins',
     age: 6
@@ -59,7 +59,6 @@ app.get('/breeds', function(req, res) {
 })
 
 app.get('/breeds/:id', function(req, res) {
-  //const breedsFilter = filter((breeds = item => item.type === 'breed'), database)
   const breedsFilter = R.filter(R.propEq('type', 'breed'), database)
   const idFilter = item => item.id === req.params.id
   res.send(R.find(idFilter, breedsFilter))
@@ -71,8 +70,6 @@ app.get('/cats', function(req, res) {
 })
 
 app.get('/cats/:id', function(req, res) {
-  // const catId = req.params.id
-  // res.send('You hit the /cats/:id route. Coming soon. The cat id is: ' + catId)
   const catFilter = R.filter(R.propEq('type', 'cat'), database)
   const idFilter = item => item.id === req.params.id
   res.send(R.find(idFilter, catFilter))
