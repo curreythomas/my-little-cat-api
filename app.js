@@ -73,6 +73,9 @@ app.get('/cats', function(req, res) {
 app.get('/cats/:id', function(req, res) {
   const catId = req.params.id
   res.send('You hit the /cats/:id route. Coming soon. The cat id is: ' + catId)
+  const catFilter = item => item.type === 'cat'
+  const idFilter = item => item.id === req.params.id
+  res.send(R.find(idFilter, catFilter))
 })
 
 app.listen(4000, () => console.log('API is up! MEOW! on port 4000'))
