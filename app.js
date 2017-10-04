@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
+const { filter } = require('ramda')
 
-const cats = [
+const database = [
   { id: 'tabby', type: 'breed', description: 'A great breed.' },
   { id: 'siamese', type: 'breed', description: 'The enemy of tabbies.' },
   { id: 'maine coon', type: 'breed', description: 'A big soft breed of cat.' },
@@ -52,6 +53,10 @@ app.get('/', function(req, res) {
 
 app.get('/breeds', function(req, res) {
   res.send('You hit the /breeds route. Coming soon.')
+  // send a colection of breeds from the 'database'.
+  //filter the breeds from the rest of the info in the 'database'.
+  const breeds = item => item.type === 'breed'
+  res.send(filter(breeds, database))
 })
 
 app.get('/breeds/:id', function(req, res) {
@@ -62,7 +67,8 @@ app.get('/breeds/:id', function(req, res) {
 })
 
 app.get('/cats', function(req, res) {
-  res.send('You hit the /cats route. Coming soon.')
+  const catFilter = item => item.type === 'cat'
+  res.send(filter(catFilter, database))
 })
 
 app.get('/cats/:id', function(req, res) {
